@@ -20,9 +20,13 @@ const saveCollection = require("./src/collections/save-collection");
 const listCollections = require("./src/collections/list-collections");
 const retrieveCollection = require("./src/collections/retrieve-collection");
 const deleteCollection = require("./src/collections/delete-collection");
+const saveListing = require("./src/listings/save-listing");
+const listListings = require("./src/listings/list-listings");
+const retrieveListing = require("./src/listings/retrieve-listing");
+const deleteListing = require("./src/listings/delete-listing");
 
 
-let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl, collections, collection, listings, listing;
+let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl, collectionId, collections, collection, listingId, listings, listing;
 
 const main = async () => {
 
@@ -227,7 +231,51 @@ const main = async () => {
             if(!collection) return console.log('Failed to delete collection');
             console.log("Collection deleted");
             break;
+        
 
+         // LISTING COMMANDS
+         case 'create-listing':
+            if(args.length < 2) return console.log('No collection id provided');
+            collectionId = args[1];
+            listing = await saveListing(collectionId);
+            if(!listing) return console.log('Failed to create listing');
+            console.log("Listing created");
+
+            break;
+        
+        case 'save-listing':
+            if(args.length < 3) return console.log('Collection ID and Listing ID required');
+            collectionId = args[1];
+            listingId = args[2];
+
+            listing = await saveListing(collectionId, listingId);
+            if(!listing) return console.log('Failed to dave listing');
+            console.log("Listing saved");
+            break;
+        
+        case 'list-listings':
+            if(args.length < 2) return console.log('No collection id provided');
+            collectionId = args[1];
+            listings = await listListings(collectionId);
+            if(!listings) return console.log('Failed to list listings');
+            console.log(listings);
+            break;
+
+        case 'retrieve-listing':
+            if(args.length < 2) return console.log('No listing id provided');
+            listingId = args[1];
+            listing = await retrieveListing(listingId);
+            if(!listing) return console.log('Failed to retrieve listing');
+            console.log(listing);
+            break;
+        
+        case 'delete-listing':
+            if(args.length < 2) return console.log('No listing id provided');
+            listingId = args[1];
+            listing = await deleteListing(listingId);
+            if(!listing) return console.log('Failed to delete listing');
+            console.log("Listing deleted");
+            break;
 
         default:
             console.log('Invalid command');
