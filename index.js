@@ -24,6 +24,7 @@ const saveListing = require("./src/listings/save-listing");
 const listListings = require("./src/listings/list-listings");
 const retrieveListing = require("./src/listings/retrieve-listing");
 const deleteListing = require("./src/listings/delete-listing");
+const searchNfts = require("./src/nfts/search-nfts");
 
 
 let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl, collectionId, collections, collection, listingId, listings, listing;
@@ -87,6 +88,17 @@ const main = async () => {
         case "list-nfts":
 
             nfts = await listNfts(1);
+            if(!nfts) return console.log("Failed to fetch NFTs");
+            
+            console.log(`${nfts.length} NFTs found:`);
+            console.log(nfts);
+
+            break;
+        
+        case "search-nfts":
+            if(args.length < 2) return console.log('No query provided');
+            const query = args[1];
+            nfts = await searchNfts(query, 1);
             if(!nfts) return console.log("Failed to fetch NFTs");
             
             console.log(`${nfts.length} NFTs found:`);
