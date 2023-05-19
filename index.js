@@ -11,9 +11,10 @@ const evolveNft = require("./src/nfts/evolve-nft");
 const createShop = require("./src/shop/create-shop");
 const saveShop = require("./src/shop/save-shop");
 const publishShop = require("./src/shop/publish-shop");
+const retrieveShop = require("./src/shop/retrieve-shop");
 
 
-let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount;
+let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop;
 
 const main = async () => {
 
@@ -140,6 +141,12 @@ const main = async () => {
             success = await publishShop();
             if(!success) return console.log('Failed to publish shop');
             console.log('Shop has been published');
+            break;
+        
+        case 'retrieve-shop':
+            shop = await retrieveShop();
+            if(!shop) return console.log('Failed to retrieve shop');
+            console.log(shop)
             break;
 
         default:
