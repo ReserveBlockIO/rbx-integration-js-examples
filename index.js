@@ -10,6 +10,7 @@ const burnNft = require("./src/nfts/burn-nft");
 const evolveNft = require("./src/nfts/evolve-nft");
 const createShop = require("./src/shop/create-shop");
 const saveShop = require("./src/shop/save-shop");
+const publishShop = require("./src/shop/publish-shop");
 
 
 let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount;
@@ -133,6 +134,12 @@ const main = async () => {
             success = await saveShop();
             if(!success) return console.log('Failed to create shop');
             console.log('Shop has been saved');
+            break;
+        
+        case 'publish-shop':
+            success = await publishShop();
+            if(!success) return console.log('Failed to publish shop');
+            console.log('Shop has been published');
             break;
 
         default:
