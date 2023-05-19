@@ -6,7 +6,7 @@ This repo contains node/javascript integration examples. This is not an SDK but 
 
 #### General Notes
 1. You will need a core CLI running with its API enabled
-    - Either press `11` to enable the API in the CLI's interface
+    - Either press `10` to enable the API in the CLI's interface
     - Or, you can launch it like so: `./ReserveBlockCore enableapi`
 
 2. If the wallet will be running on an alternate machine, you'll need to enable the `openapi` flag when launching
