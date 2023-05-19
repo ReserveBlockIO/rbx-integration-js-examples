@@ -13,9 +13,12 @@ const saveShop = require("./src/shop/save-shop");
 const publishShop = require("./src/shop/publish-shop");
 const retrieveShop = require("./src/shop/retrieve-shop");
 const toggleShopOnline = require("./src/shop/toggle-shop-online");
+const retrieveNetworkShop = require("./src/shop/retrieve-network-shop");
+const deleteShop = require("./src/shop/delete-shop");
+const deleteNetworkShop = require("./src/shop/delete-network-shop");
 
 
-let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop;
+let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl;
 
 const main = async () => {
 
@@ -148,6 +151,31 @@ const main = async () => {
             shop = await retrieveShop();
             if(!shop) return console.log('Failed to retrieve shop');
             console.log(shop)
+            break;
+        
+          
+        
+        case 'retrieve-network-shop':
+            if(args.length < 2) return console.log('No shop url provided');
+            shopUrl = args[1];
+            shop = await retrieveNetworkShop(shopUrl);
+            if(!shop) return console.log('Failed to retrieve network shop');
+            console.log(shop)
+            break;
+
+        case 'delete-network-shop':
+            success = await deleteNetworkShop();
+            if(!success) return console.log('Failed to delete shop from network');
+            console.log(shop)
+            console.log("Shop Deleted from Network")
+
+            break;
+            
+        case 'delete-shop':
+            success = await deleteShop();
+            if(!success) return console.log('Failed to delete local shop');
+
+            console.log("Shop Deleted Locally")
             break;
         
         case 'toggle-shop-online':
