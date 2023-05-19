@@ -17,6 +17,9 @@ const retrieveNetworkShop = require("./src/shop/retrieve-network-shop");
 const deleteShop = require("./src/shop/delete-shop");
 const deleteNetworkShop = require("./src/shop/delete-network-shop");
 const saveCollection = require("./src/collections/save-collection");
+const listCollections = require("./src/collections/list-collections");
+const retrieveCollection = require("./src/collections/retrieve-collection");
+const deleteCollection = require("./src/collections/delete-collection");
 
 
 let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl, collections, collection, listings, listing;
@@ -201,7 +204,28 @@ const main = async () => {
             collection = await saveCollection(1);
             if(!collection) return console.log('Failed to update collection');
             console.log("Collection Saved");
+            break;
+        
+        case 'list-collections':
+            collections = await listCollections();
+            if(!collections) return console.log('Failed to list collections');
+            console.log(collections);
+            break;
 
+        case 'retrieve-collection':
+            if(args.length < 2) return console.log('No collection id provided');
+            collectionId = args[1];
+            collection = await retrieveCollection(collectionId);
+            if(!collection) return console.log('Failed to retrieve collection');
+            console.log(collection);
+            break;
+        
+        case 'delete-collection':
+            if(args.length < 2) return console.log('No collection id provided');
+            collectionId = args[1];
+            collection = await deleteCollection(collectionId);
+            if(!collection) return console.log('Failed to delete collection');
+            console.log("Collection deleted");
             break;
 
 
