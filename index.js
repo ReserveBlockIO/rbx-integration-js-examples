@@ -16,9 +16,10 @@ const toggleShopOnline = require("./src/shop/toggle-shop-online");
 const retrieveNetworkShop = require("./src/shop/retrieve-network-shop");
 const deleteShop = require("./src/shop/delete-shop");
 const deleteNetworkShop = require("./src/shop/delete-network-shop");
+const saveCollection = require("./src/collections/save-collection");
 
 
-let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl;
+let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop, shopUrl, collections, collection, listings, listing;
 
 const main = async () => {
 
@@ -153,8 +154,6 @@ const main = async () => {
             console.log(shop)
             break;
         
-          
-        
         case 'retrieve-network-shop':
             if(args.length < 2) return console.log('No shop url provided');
             shopUrl = args[1];
@@ -188,6 +187,23 @@ const main = async () => {
                 console.log('Failed to update online status');
             }
             break;
+
+        
+        // COLLECTION COMMANDS
+        case 'create-collection':
+            collection = await saveCollection();
+            if(!collection) return console.log('Failed to create collection');
+            console.log("Collection created");
+
+            break;
+        
+        case 'save-collection':
+            collection = await saveCollection(1);
+            if(!collection) return console.log('Failed to update collection');
+            console.log("Collection Saved");
+
+            break;
+
 
         default:
             console.log('Invalid command');
