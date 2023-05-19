@@ -25,7 +25,7 @@ This repo contains node/javascript integration examples. This is not an SDK but 
 
 ## Topics Covered
 
-The examples are broken up into four sections:
+The examples are broken up into five sections:
 
 **coin**: examples for sending RBX native coin from one address to another
 
