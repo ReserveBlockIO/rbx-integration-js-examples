@@ -21,8 +21,6 @@ This repo contains node/javascript integration examples. This is not an SDK but 
 4. The example code is built around testnet which is why you'll see RBX addresses in the examples beginning with an `x` rather than an `R`. To use this on mainnet you'll want to make sure the port in the `CLI_BASE_URL` (in `constants.js`) is set to `7292` instead of `17292`.
 
 
-
-
 ## Topics Covered
 
 The examples are broken up into four sections:
@@ -54,4 +52,8 @@ $ node index.js mint-nft SMART_CONTRACT_UID
 ```
 <small>NOTE: replace `SMART_CONTRACT_UID` with the id that was logged in the previous step.</small>
 
+
+## Questions
+
+For any questions related to integration, please reach out on our [#dev-talk](https://discord.com/channels/917499597692211260/933089423233527819) channel on Discord.
 
