@@ -20,6 +20,8 @@ This repo contains node/javascript integration examples. This is not an SDK but 
 
 4. The example code is built around testnet which is why you'll see RBX addresses in the examples beginning with an `x` rather than an `R`. To use this on mainnet you'll want to make sure the port in the `CLI_BASE_URL` (in `constants.js`) is set to `7292` instead of `17292`.
 
+5. There are many more API endpoints available. Please visit http://localhost:7292/swagger on the machine running the CLI+API to review and interact with everything that's available.
+
 
 ## Topics Covered
 
