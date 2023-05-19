@@ -12,6 +12,7 @@ const createShop = require("./src/shop/create-shop");
 const saveShop = require("./src/shop/save-shop");
 const publishShop = require("./src/shop/publish-shop");
 const retrieveShop = require("./src/shop/retrieve-shop");
+const toggleShopOnline = require("./src/shop/toggle-shop-online");
 
 
 let minted, smartContractUid, nfts, nft,  success, txHash, stage, fromAddress, toAddress, amount, shop;
@@ -147,6 +148,17 @@ const main = async () => {
             shop = await retrieveShop();
             if(!shop) return console.log('Failed to retrieve shop');
             console.log(shop)
+            break;
+        
+        case 'toggle-shop-online':
+            const isOffline = await toggleShopOnline();
+            if(isOffline === true){
+                console.log('Shop status OFFLINE');
+            } else if(isOffline === false){
+                console.log('Shop status ONLINE');
+            } else {
+                console.log('Failed to update online status');
+            }
             break;
 
         default:
